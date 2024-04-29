@@ -47,3 +47,72 @@ type User = {
 
 type StringKeysOfObj = KeysOfValue<User, string>;
 type NumericKeysOfOb = KeysOfValue<User, number>;
+
+// Examples
+type CSSUnits = "px" | "em" | "rem" | "vw" | "vh";
+
+/**
+ * | {
+ *   length: number;
+ *   unit: 'px';
+ * }
+ * | {
+ *   length: number;
+ *   unit: 'em';
+ * }
+ * | {
+ *   length: number;
+ *   unit: 'rem';
+ * }
+ * | {
+ *   length: number;
+ *   unit: 'vw';
+ * }
+ * | {
+ *   length: number;
+ *   unit: 'vh';
+ * }
+ */
+export type CSSLength = {
+  [U in CSSUnits]: {
+    length: number;
+    unit: U;
+  };
+}[CSSUnits];
+
+type SuccessResponseCode = 200;
+
+type ErrorResponseCode = 400 | 500;
+
+type ResponseCode = SuccessResponseCode | ErrorResponseCode;
+
+/**
+ * | {
+ *   code: 200;
+ *   body: {
+ *     success: true;
+ *   };
+ * }
+ * | {
+ *   code: 400;
+ *   body: {
+ *     success: false;
+ *     error: string;
+ *   };
+ * }
+ * | {
+ *   code: 500;
+ *   body: {
+ *     success: false;
+ *     error: string;
+ *   };
+ * }
+ */
+type ResponseShape = {
+  [C in ResponseCode]: {
+    code: C;
+    body: C extends SuccessResponseCode
+      ? { sucess: true }
+      : { sucess: false; error: string };
+  };
+}[ResponseCode];

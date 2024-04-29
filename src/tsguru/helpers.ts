@@ -111,3 +111,8 @@ function isKey<T extends Record<string, unknown>>(
   return k in x;
 }
 // if (isKey(user, key)) user[key]
+
+const myFuncLiteralInput = <const T>(input: T) => {
+  return input;
+};
+const literalReturn = myFuncLiteralInput({ foo: "bar" });
