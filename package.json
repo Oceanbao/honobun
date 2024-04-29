@@ -5,7 +5,8 @@
     "lint": "bun eslint"
   },
   "dependencies": {
-    "hono": "^4.2.7"
+    "hono": "^4.2.7",
+    "ts-toolbelt": "^9.6.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.0.2",

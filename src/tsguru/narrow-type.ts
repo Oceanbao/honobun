@@ -77,3 +77,29 @@ console.log(buttonProps.type);
 
 // @ts-expect-error
 const aaa: string = 1;
+
+function narrowGenericsByExtends() {
+  const getDeepValue = <
+    Obj,
+    FirstKey extends keyof Obj,
+    SecondKey extends keyof Obj[FirstKey],
+  >(
+    obj: Obj,
+    firstKey: FirstKey,
+    secondKey: SecondKey,
+  ): Obj[FirstKey][SecondKey] => {
+    return obj[firstKey][secondKey];
+  };
+
+  const obj = {
+    num: {
+      foo: 1,
+    },
+    foo: {
+      bar: false,
+    },
+  };
+
+  const resultNumber = getDeepValue(obj, "num", "foo");
+  const resultBoolean = getDeepValue(obj, "foo", "bar");
+}

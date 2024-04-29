@@ -23,6 +23,7 @@ export default [
       "@typescript-eslint/object-curly-spacing": "off",
       "@typescript-eslint/quotes": "off",
       "@typescript-eslint/indent": "off",
+      "@typescript-eslint/naming-convention": "off",
     },
   },
   {

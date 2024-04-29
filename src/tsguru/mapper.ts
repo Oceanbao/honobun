@@ -35,3 +35,15 @@ type EventTypes =
 type EventTypesMap = {
   [E in EventTypes as E["type"]]: (event: E) => void;
 };
+
+type KeysOfValue<T, Condition> = {
+  [K in keyof T]: T[K] extends Condition ? K : never;
+}[keyof T];
+
+type User = {
+  name: string;
+  age: number;
+};
+
+type StringKeysOfObj = KeysOfValue<User, string>;
+type NumericKeysOfOb = KeysOfValue<User, number>;
